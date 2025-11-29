@@ -66,7 +66,13 @@ async function checkSlip(username, codes) {
                     const id = Number(row.querySelector("td").textContent.trim());
                     const downloadCell = row.querySelector(".download-cell");
 
-                    if (validIds.includes(id)) {
+                    const foundItem = validIds.find(item => item.payment_id === id);
+
+                    if (foundItem) {
+                        const documentType = foundItem.person_type === "JURISTIC_PERSON" 
+                            ? "(ใบกำกับภาษี)" 
+                            : "(ใบเสร็จ)";
+
                         downloadCell.innerHTML = `
                             <span class="download-btn" data-id="${id}" style="cursor:pointer;">
                                 <svg
@@ -87,6 +93,7 @@ async function checkSlip(username, codes) {
                                     </g>
                                     <path d="M20 16.58A5 5 0 0 0 18 9h-1.26a8 8 0 1 0-11.58 9.35" />
                                 </svg>
+                                ${documentType}
                             </span>
                         `;
                     } else {
@@ -144,4 +151,5 @@ function downloadFileById(username, id) {
         console.error('Error downloading file:', error);
     }
 }
+
 
