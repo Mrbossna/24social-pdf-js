@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // -------------------------------
     const theadRow = table.querySelector("thead tr");
     const th = document.createElement("th");
-    th.textContent = "Download";
+    th.textContent = "เอกสาร";
     theadRow.appendChild(th);
 
     // -------------------------------
@@ -144,3 +144,4 @@ function downloadFileById(username, id) {
         console.error('Error downloading file:', error);
     }
 }
+
